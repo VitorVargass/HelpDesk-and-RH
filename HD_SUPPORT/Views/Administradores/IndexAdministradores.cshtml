@@ -1,0 +1,49 @@
+﻿@model IEnumerable<HD_SUPPORT.Models.Administrador>
+
+@{
+    ViewData["Title"] = "IndexAdministradores";
+}
+
+<h1 class="titulo-tabela">Administradores</h1>
+
+<p>
+    <a asp-action="NovoAdministrador" class="btn btn-primary">Novo Adm</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Senha)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Senha)
+            </td>
+            <td style="display:flex;">
+                <a asp-action="AtualizarAdministrador" asp-route-administradorid="@item.Id" class="btn btn-primary">Atualizar</a> 
+                <a asp-action="DetalharAdministrador" asp-route-administradorid="@item.Id" class="btn btn-success">Detalhar</a> 
+                <form asp-action="ExcluirAdministrador" asp-route-administradorid="@item.Id">
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,93 @@
+﻿@model HD_SUPPORT.Models.Equipamento
+
+@{
+    ViewData["Title"] = "NovoEquipamento";
+}
+
+<h1 class="titulo-dados">NovoEquipamento</h1>
+
+<h4>Equipamento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="NovoEquipamento">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NomeUsuario" class="control-label"></label>
+                <input asp-for="NomeUsuario" class="form-control" />
+                <span asp-validation-for="NomeUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailUsuario" class="control-label"></label>
+                <input asp-for="EmailUsuario" class="form-control" />
+                <span asp-validation-for="EmailUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TelegramUsuario" class="control-label"></label>
+                <input asp-for="TelegramUsuario" class="form-control" />
+                <span asp-validation-for="TelegramUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TelefoneUsuario" class="control-label"></label>
+                <input asp-for="TelefoneUsuario" class="form-control" />
+                <span asp-validation-for="TelefoneUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusUsuario" class="control-label"></label>
+                <input asp-for="StatusUsuario" class="form-control" />
+                <span asp-validation-for="StatusUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoriaUsuario" class="control-label"></label>
+                <input asp-for="CategoriaUsuario" class="form-control" />
+                <span asp-validation-for="CategoriaUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdPatrimonio" class="control-label"></label>
+                <input asp-for="IdPatrimonio" class="form-control" />
+                <span asp-validation-for="IdPatrimonio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModeloMarca" class="control-label"></label>
+                <input asp-for="ModeloMarca" class="form-control" />
+                <span asp-validation-for="ModeloMarca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Processador" class="control-label"></label>
+                <input asp-for="Processador" class="form-control" />
+                <span asp-validation-for="Processador" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SistemaOperacional" class="control-label"></label>
+                <input asp-for="SistemaOperacional" class="form-control" />
+                <span asp-validation-for="SistemaOperacional" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Headset" class="control-label"></label>
+                <input asp-for="Headset" class="form-control" />
+                <span asp-validation-for="Headset" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InicioEmprestimo" class="control-label"></label>
+                <input asp-for="InicioEmprestimo" class="form-control" />
+                <span asp-validation-for="InicioEmprestimo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TerminoEmprestimo" class="control-label"></label>
+                <input asp-for="TerminoEmprestimo" class="form-control" />
+                <span asp-validation-for="TerminoEmprestimo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="IndexEquipamentos" class="btn btn-outline-dark">Voltar para lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
