@@ -1,24 +1,16 @@
 ﻿@model IEnumerable<HD_SUPPORT.Models.Equipamento>
 
 @{
-    ViewData["Title"] = "IndexEquipamentos";
+    Layout = "_LayoutRh";
+    ViewData["Title"] = "Tabela de Maquinas";
 }
 
 <div class="tabela">
-    <h1 class="titulo-tabela">Usuários e equipamentos</h1>
+    <h1 class="titulo-tabela">Equipamentos</h1>
 
-    <p>
-        <a asp-action="NovoEquipamento" class="btn btn-primary">Novo registro</a>
-    </p>
     <table class="table" style="box-shadow: 0 50px 10px rgb(255,255,255,0.2);">
         <thead>
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.NomeUsuario)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CategoriaUsuario)
-                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.IdPatrimonio)
                 </th>
@@ -36,12 +28,6 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.NomeUsuario)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CategoriaUsuario)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.IdPatrimonio)
                     </td>
                     <td>
@@ -51,11 +37,7 @@
                         @Html.DisplayFor(modelItem => item.TerminoEmprestimo)
                     </td>
                     <td style="display:flex; justify-content: right;">
-                        <a asp-action="AtualizarEquipamento" asp-route-equipamentoid="@item.Id" class="btn btn-primary" style="margin: 0 10px 0 0px;">Atualizar</a>
                         <a asp-action="DetalharEquipamento" asp-route-equipamentoid="@item.Id" class="btn btn-success" style="margin: 0 10px 0 0px;">Detalhes</a>
-                        <form asp-action="ExcluirEquipamento" asp-route-equipamentoid="@item.Id">
-                            <button type="submit" class="btn btn-danger">Excluir</button>
-                        </form>
                     </td>
                 </tr>
             }
@@ -63,7 +45,3 @@
     </table>
 
 </div>
-
-
-
-

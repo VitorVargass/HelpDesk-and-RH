@@ -168,7 +168,6 @@ nav ul {
         font-size: 25px
     }
 .titulo-tabela {
-    margin-top: 100px;
     color: var(--blue-3);
 }
 .titulo-dados {
@@ -196,3 +195,15 @@ nav ul {
         background: #fff;
         color: #162938;
     }
+
+/*---------------------------------------------------------------------------------------------------------------------------*/
+
+.tabela {
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0,0,0,.5);
+    padding: 50px;
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 20px;
+    margin-top: 120px;
+}

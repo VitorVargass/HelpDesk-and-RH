@@ -4,46 +4,49 @@
     ViewData["Title"] = "IndexAdministradores";
 }
 
-<h1 class="titulo-tabela">Administradores</h1>
+<div class="tabela">
+    <h1 class="titulo-tabela">Administradores</h1>
 
-<p>
-    <a asp-action="NovoAdministrador" class="btn btn-primary">Novo Adm</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Senha)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Senha)
-            </td>
-            <td style="display:flex;">
-                <a asp-action="AtualizarAdministrador" asp-route-administradorid="@item.Id" class="btn btn-primary">Atualizar</a> 
-                <a asp-action="DetalharAdministrador" asp-route-administradorid="@item.Id" class="btn btn-success">Detalhar</a> 
-                <form asp-action="ExcluirAdministrador" asp-route-administradorid="@item.Id">
-                    <button type="submit" class="btn btn-danger">Excluir</button>
-                </form>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <p>
+        <a asp-action="NovoAdministrador" class="btn btn-primary">Novo Adm</a>
+    </p>
+    <table class="table" style="box-shadow: 0 50px 10px rgb(255,255,255,0.2);">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Senha)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Senha)
+                    </td>
+                    <td style="display:flex; justify-content: right;">
+                        <a asp-action="AtualizarAdministrador" asp-route-administradorid="@item.Id" class="btn btn-primary" style="margin: 0 10px 0 0px;">Atualizar</a>
+                        <a asp-action="DetalharAdministrador" asp-route-administradorid="@item.Id" class="btn btn-success" style="margin: 0 10px 0 0px;">Detalhar</a>
+                        <form asp-action="ExcluirAdministrador" asp-route-administradorid="@item.Id">
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

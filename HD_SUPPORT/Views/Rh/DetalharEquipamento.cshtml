@@ -1,9 +1,10 @@
 ﻿@model HD_SUPPORT.Models.Equipamento
 
 @{
+    Layout = "_LayoutRh";
     ViewData["Title"] = "DetalharEquipamento";
 }
- 
+
 <h1 class="titulo-dados">DetalharEquipamento</h1>
 
 <div>
@@ -72,10 +73,6 @@
         </dd>
     </dl>
 </div>
-<div style="display: flex;">
-    <a asp-action="AtualizarEquipamento" asp-route-equipamentoid="@Model?.Id" class="btn btn-primary">Atualizar</a>
-    <a asp-action="IndexEquipamentos" class="btn btn-outline-dark">Voltar para lista</a>
-    <form asp-action="ExcluirEquipamento" asp-route-equipamentoid="@Model?.Id">
-        <button type="submit" class="btn btn-danger">Excluir</button>
-    </form>
+<div>
+    <a asp-action="Index" class="btn btn-outline-dark">Voltar</a>
 </div>
