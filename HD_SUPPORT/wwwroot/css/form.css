@@ -1,20 +1,20 @@
-html {
-  font-size: 14px;
+﻿html {
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 
@@ -115,7 +115,7 @@ nav ul {
     align-items: center;
 }
 
-#form-login{
+#form-login {
     background-color: rgb(255, 255, 255, 0.6);
     width: 470px;
     height: 600px;
@@ -167,13 +167,16 @@ nav ul {
         color: white;
         font-size: 25px
     }
+
 .titulo-tabela {
     color: var(--blue-3);
 }
+
 .titulo-dados {
     margin-top: 100px;
     color: var(--blue-3);
 }
+
 .btn-nav {
     width: 130px;
     height: 50px;
@@ -191,6 +194,7 @@ nav ul {
     text-decoration: none;
     padding: 13px;
 }
+
     .btn-nav:hover {
         background: #fff;
         color: #162938;
@@ -198,12 +202,3 @@ nav ul {
 
 /*---------------------------------------------------------------------------------------------------------------------------*/
 
-.tabela {
-    background: transparent;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px rgba(0,0,0,.5);
-    padding: 50px;
-    border: 2px solid rgba(255,255,255,.5);
-    border-radius: 20px;
-    margin-top: 100px;
-}
