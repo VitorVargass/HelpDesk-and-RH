@@ -1,81 +1,87 @@
 ﻿@model HD_SUPPORT.Models.Equipamento
 
 @{
+    Layout = "_LayoutForm";
     ViewData["Title"] = "AtualizarEquipamento";
 }
 
-<h1 class="titulo-dados">AtualizarEquipamento</h1>
-
-<h4>Equipamento</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="AtualizarEquipamento">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="NomeUsuario" class="control-label"></label>
-                <input asp-for="NomeUsuario" class="form-control" />
-                <span asp-validation-for="NomeUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmailUsuario" class="control-label"></label>
-                <input asp-for="EmailUsuario" class="form-control" />
-                <span asp-validation-for="EmailUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TelefoneUsuario" class="control-label"></label>
-                <input asp-for="TelefoneUsuario" class="form-control" />
-                <span asp-validation-for="TelefoneUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StatusUsuario" class="control-label"></label>
-                <input asp-for="StatusUsuario" class="form-control" />
-                <span asp-validation-for="StatusUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoriaUsuario" class="control-label"></label>
-                <input asp-for="CategoriaUsuario" class="form-control" />
-                <span asp-validation-for="CategoriaUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdPatrimonio" class="control-label"></label>
-                <input asp-for="IdPatrimonio" class="form-control" />
-                <span asp-validation-for="IdPatrimonio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModeloMarca" class="control-label"></label>
-                <input asp-for="ModeloMarca" class="form-control" />
-                <span asp-validation-for="ModeloMarca" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Processador" class="control-label"></label>
-                <input asp-for="Processador" class="form-control" />
-                <span asp-validation-for="Processador" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="InicioEmprestimo" class="control-label"></label>
-                <input asp-for="InicioEmprestimo" class="form-control" />
-                <span asp-validation-for="InicioEmprestimo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TerminoEmprestimo" class="control-label"></label>
-                <input asp-for="TerminoEmprestimo" class="form-control" />
-                <span asp-validation-for="TerminoEmprestimo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+<section style="display: flex; flex-direction:column;">
+    <div style="display: flex; justify-content: space-between;">
+        <a asp-action="IndexEquipamentos" class="btn btn-outline-dark">Voltar para lista</a>
+        <form asp-action="ExcluirEquipamento" asp-route-equipamentoid="@Model?.Id">
+            <button type="submit" class="btn btn-danger">Excluir</button>
         </form>
     </div>
-</div>
 
-<div style="display: flex;">
-    <a asp-action="IndexEquipamentos" class="btn btn-outline-dark">Voltar para lista</a>
-    <form asp-action="ExcluirEquipamento" asp-route-equipamentoid="@Model?.Id">
-        <button type="submit" class="btn btn-danger">Excluir</button>
-    </form>
-</div>
+    <div class="input-pai2">
+        <div class="wrapper2">
+            <form asp-action="AtualizarEquipamento" style="display: flex;">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div style="margin-right: 40px;">
+                    <div class="input-box2">
+                        <input asp-for="NomeUsuario" />
+                        <span asp-validation-for="NomeUsuario" class="text-danger"></span>
+                        <label>Nome</label>
+                    </div>
+                    <div class="input-box2">
+                        <input asp-for="EmailUsuario" />
+                        <span asp-validation-for="EmailUsuario" class="text-danger"></span>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box2">
+                        <input asp-for="TelefoneUsuario" />
+                        <span asp-validation-for="TelefoneUsuario" class="text-danger"></span>
+                        <label>Telefone</label>
+                    </div>
+                    <div class="input-box2">
+                        <input asp-for="StatusUsuario" />
+                        <span asp-validation-for="StatusUsuario" class="text-danger"></span>
+                        <label>modelo</label>
+                    </div>
+                    <div class="input-box2">
+                        <input asp-for="CategoriaUsuario" />
+                        <span asp-validation-for="CategoriaUsuario" class="text-danger"></span>
+                        <label>funcão</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="input-box2">
+                        <input asp-for="IdPatrimonio" />
+                        <span asp-validation-for="IdPatrimonio" class="text-danger"></span>
+                        <label>Id patrimonio</label>
+                    </div>
+                    <div class="input-box2">
+                        <input asp-for="ModeloMarca" />
+                        <span asp-validation-for="ModeloMarca" class="text-danger"></span>
+                        <label>Marca</label>
+                    </div>
+                    <div class="input-box2">
+                        <input asp-for="Processador" />
+                        <span asp-validation-for="Processador" class="text-danger"></span>
+                        <label>Processador</label>
+                    </div>
+                    <div class="input-box2">
+                        <input asp-for="InicioEmprestimo" />
+                        <span asp-validation-for="InicioEmprestimo" class="text-danger"></span>
+                        <label>data do emprenstimo</label>
+                    </div>
+                    <div class="input-box2">
+                        <input asp-for="TerminoEmprestimo" />
+                        <span asp-validation-for="TerminoEmprestimo" class="text-danger"></span>
+                        <label>Condição</label>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="button-Edit">Confirmar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
