@@ -20,19 +20,19 @@
             </span>
             <div class="form-box login">
                 <h2>Entrar</h2>
-                <form asp-controller="Login" asp-action="Logar" method="post">
+                <form asp-controller="Login" asp-action="Login" method="post">
                     <div class="input-box">
                         <span class="icon">
                             <i class="bi bi-envelope-fill"></i>
                         </span>
-                        <input type="email" required>
+                        <input type="email" asp-for="Email" required>
                         <label>Email</label>
                     </div>
                     <div class="input-box">
                         <span class="icon">
                             <i class="bi bi-lock-fill"></i>
                         </span>
-                        <input type="password" required>
+                        <input type="password" asp-for="Senha" required>
                         <label>Senha</label>
                     </div>
                     <div class="remember-forgot">
@@ -77,7 +77,7 @@
                         <label><input type="checkbox">Concordo com os termos e condições</label>
                     </div>
                     <button type="submit" class="btn" style="color: #fff;">Registrar</button>
-                    <div class="login-register">
+                     <div class="login-register">
                         <p>Já possui conta? <a href="#" class="login-link">Entrar</a></p>
                     </div>
                     <div class="logn-register">

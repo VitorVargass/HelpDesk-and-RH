@@ -17,6 +17,14 @@ namespace HD_SUPPORT
             services.AddDbContext<Contexto>(opcoes => opcoes.UseSqlite(Configuration.GetConnectionString("ConexaoSQLite1")));
             services.AddDbContext<Contexto>(opcoes => opcoes.UseSqlite(Configuration.GetConnectionString("ConexãoSQLite2")));
             services.AddControllersWithViews();
+
+
+
+
+            services.AddHttpsRedirection(options =>
+            {
+                options.HttpsPort = 443;
+            });
         }
 
         public void Configure(WebApplication app, IWebHostEnvironment environment)

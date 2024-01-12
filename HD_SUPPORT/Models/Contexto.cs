@@ -14,7 +14,4 @@ namespace HD_SUPPORT.Models
 
         }
     }
-
-    
-
 }
