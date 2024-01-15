@@ -8,14 +8,21 @@ namespace HD_SUPPORT.Controllers
     public class EquipamentosController : Controller
     {
         private readonly Contexto _contexto;
-
-        public EquipamentosController(Contexto contexto)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public EquipamentosController(Contexto contexto, IHttpContextAccessor httpContextAccessor)
         {
             _contexto = contexto;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<IActionResult> IndexEquipamentos()
         {
+            var nomeUsuario = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
+            if (!string.IsNullOrEmpty(nomeUsuario))
+            {
+                ViewBag.UsuarioNome = nomeUsuario;
+            }
+
             return View(await _contexto.Equipamentos.ToListAsync());
         }
         [HttpGet]

@@ -1,5 +1,6 @@
 ﻿using HD_SUPPORT.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -8,10 +9,12 @@ namespace HD_SUPPORT.Controllers
     public class LoginController : Controller
     {
         private readonly Contexto _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public LoginController(Contexto context)
+        public LoginController(Contexto context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
         public IActionResult Index()
         {
@@ -20,19 +23,31 @@ namespace HD_SUPPORT.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Administrador admin)
+        public IActionResult Login(Administrador admin)
         {
-            var usuarioLogando = _context.Administradores.FirstOrDefault(u => u.Email == admin.Email && u.Senha == admin.Senha);
-
-
+            var usuarioLogando = _context.Administradores.FirstOrDefault(u => u.Email == admin.Email && u.Senha == admin.Senha);// seu código para verificar o usuário
             if (usuarioLogando != null)
             {
-                Console.WriteLine("Esta funcionando");
+
+                // Se o usuário estiver correto, armazene as informações necessárias na sessão
+                _httpContextAccessor.HttpContext.Session.SetString("UsuarioNome", usuarioLogando.Nome);
+                _httpContextAccessor.HttpContext.Session.SetInt32("UsuarioID", usuarioLogando.Id);
+
+                ViewBag.UsuarioNome = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
+
                 return RedirectToAction("Index", "Home");
             }
+            else
+            {
+                ModelState.AddModelError("", "Email ou senha inválidos.");
+                return View("Index");
+            }
+        }
 
-            ModelState.AddModelError("", "Email ou senha inválidos.");
-            return View("Index");
+        public IActionResult Logout()
+        {
+            _httpContextAccessor.HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

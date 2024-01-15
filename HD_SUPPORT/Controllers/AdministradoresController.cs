@@ -7,14 +7,22 @@ namespace HD_SUPPORT.Controllers
     public class AdministradoresController : Controller
     {
         private readonly Contexto _contexto;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AdministradoresController(Contexto contexto)
+        public AdministradoresController(Contexto contexto, IHttpContextAccessor httpContextAccessor)
         {
             _contexto = contexto;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<IActionResult> IndexAdministradores()
         {
+            var nomeUsuario = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
+            if (!string.IsNullOrEmpty(nomeUsuario))
+            {
+                ViewBag.UsuarioNome = nomeUsuario;
+            }
+
             return View(await _contexto.Administradores.ToListAsync());
         }
 
@@ -29,7 +37,7 @@ namespace HD_SUPPORT.Controllers
             await _contexto.Administradores.AddAsync(administrador);
             await _contexto.SaveChangesAsync();
 
-            return RedirectToAction(nameof(IndexAdministradores));
+            return RedirectToAction("Index", "Login");
         }
 
         [HttpGet]

@@ -18,7 +18,14 @@ namespace HD_SUPPORT
             services.AddDbContext<Contexto>(opcoes => opcoes.UseSqlite(Configuration.GetConnectionString("ConexãoSQLite2")));
             services.AddControllersWithViews();
 
-
+            services.AddHttpContextAccessor();
+            services.AddDistributedMemoryCache(); // Armazena sessões na memória
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30); // Tempo de vida da sessão
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
 
             services.AddHttpsRedirection(options =>
@@ -40,6 +47,8 @@ namespace HD_SUPPORT
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthorization();
 
