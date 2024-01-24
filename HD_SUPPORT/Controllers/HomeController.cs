@@ -1,5 +1,7 @@
 using HD_SUPPORT.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace HD_SUPPORT.Controllers
@@ -15,15 +17,16 @@ namespace HD_SUPPORT.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
+        
         public IActionResult Index()
         {
             var nomeUsuario = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
             if (!string.IsNullOrEmpty(nomeUsuario))
             {
                 ViewBag.UsuarioNome = nomeUsuario;
-            }
-
                 return View();
+            }
+                return RedirectToAction("Index", "Login");
         }
 
         public IActionResult Privacy()

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
+
 namespace HD_SUPPORT
 {
     public class Startup : IStartup
@@ -50,6 +51,7 @@ namespace HD_SUPPORT
 
             app.UseSession();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

@@ -1,81 +1,103 @@
 ﻿@model HD_SUPPORT.Models.Equipamento
 
 @{
+    Layout = "_LayoutForm";
     ViewData["Title"] = "DetalharEquipamento";
 }
- 
-<h1 class="titulo-dados">DetalharEquipamento</h1>
 
-<div>
-    <h4>Equipamento</h4>
-    <hr />
-    <dl class="tabela">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeUsuario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomeUsuario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmailUsuario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EmailUsuario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TelefoneUsuario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TelefoneUsuario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StatusUsuario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StatusUsuario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoriaUsuario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategoriaUsuario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdPatrimonio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdPatrimonio)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModeloMarca)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModeloMarca)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Processador)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Processador)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InicioEmprestimo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InicioEmprestimo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TerminoEmprestimo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TerminoEmprestimo)
-        </dd>
+<hr />
+
+<div style="display: flex; flex-direction:column;">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 100px;">
+        <a asp-action="IndexEquipamentos" class="btn btn-outline-dark">Voltar para lista</a>
+        <form asp-action="ExcluirEquipamento" asp-route-equipamentoid="@Model?.Id">
+            <button type="submit" class="btn btn-danger">Excluir</button>
+        </form>
+    </div>
+    <dl class="detalhes">
+        <div style="margin-right: 40px;">
+            <div class="div-line">
+                <dt class="">
+                    <label class="label-info">Usuário:</label>
+                </dt>
+                <dd class="">
+                    @Html.DisplayFor(model => model.NomeUsuario)
+                </dd>
+            </div>
+            <div class="div-line">
+                <dt class="">
+                    <label class="label-info">Email:</label>
+                </dt>
+                <dd class="">
+                    @Html.DisplayFor(model => model.EmailUsuario)
+                </dd>
+            </div>
+            <div class="div-line">
+                <dt class="">
+                    <label class="label-info">Telefone:</label>
+                </dt>
+                <dd class="">
+                    @Html.DisplayFor(model => model.TelefoneUsuario)
+                </dd>
+            </div>
+            <div class="div-line">
+                <dt class="">
+                    <label class="label-info">Modelo:</label>
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.StatusUsuario)
+                </dd>
+            </div>
+            <div class="div-line">
+                <dt class="">
+                    <label class="label-info">Função:</label>
+                </dt>
+                <dd class="">
+                    @Html.DisplayFor(model => model.CategoriaUsuario)
+                </dd>
+            </div>
+        </div>
+        <div style="margin-right: 40px;">
+            <div class="div-line">
+                <dt class="">
+                    <label class="label-info">Id patrimonio:</label>
+                </dt>
+                <dd class="">
+                    @Html.DisplayFor(model => model.IdPatrimonio)
+                </dd>
+            </div>
+            <div class="div-line">
+                <dt class="">
+                    <label class="label-info">Marca:</label>
+                </dt>
+                <dd class="">
+                    @Html.DisplayFor(model => model.ModeloMarca)
+                </dd>
+            </div>
+            <div class="div-line">
+                <dt class="">
+                    <label class="label-info">Processador:</label>
+                </dt>
+                <dd class="">
+                    @Html.DisplayFor(model => model.Processador)
+                </dd>
+            </div>
+            <div class="div-line">
+                <dt class="">
+                    <label class="label-info">Data Emprestimo:</label>
+                </dt>
+                <dd class="">
+                    @Html.DisplayFor(model => model.InicioEmprestimo)
+                </dd>
+            </div>
+            <div class="div-line">
+                <dt class="">
+                    <label class="label-info">Condição:</label>
+                </dt>
+                <dd class="">
+                    @Html.DisplayFor(model => model.TerminoEmprestimo)
+                </dd>
+            </div>
+        </div>
     </dl>
-</div>
-<div style="display: flex;">
-    <a asp-action="AtualizarEquipamento" asp-route-equipamentoid="@Model?.Id" class="btn btn-primary">Atualizar</a>
-    <a asp-action="IndexEquipamentos" class="btn btn-outline-dark">Voltar para lista</a>
-    <form asp-action="ExcluirEquipamento" asp-route-equipamentoid="@Model?.Id">
-        <button type="submit" class="btn btn-danger">Excluir</button>
-    </form>
 </div>

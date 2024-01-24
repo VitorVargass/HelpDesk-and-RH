@@ -360,3 +360,51 @@ button-Edit2 {
 }
 
 /*-----------------------------------------------------------------------------*/
+
+.img-logout {
+    width: 30px;
+    margin-left: 15px;
+}
+
+.img-user {
+    width: 30px;
+    margin-right: 10px;
+}
+
+.detalhes {
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0,0,0,.5);
+    padding: 50px;
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 20px;
+    margin-top: 100px;
+    width: 750px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.detalhesAdm {
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0,0,0,.5);
+    padding: 50px;
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 20px;
+    margin-top: 100px;
+    width: 400px;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+.div-line {
+    display: flex;
+    border-bottom: 2px solid rgb(10,10,10,0.2);
+    width: 300px;
+    margin: 20px 0;
+}
+
+.label-info {
+    margin-right: 10px;
+}
