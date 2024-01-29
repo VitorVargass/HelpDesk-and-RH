@@ -1,8 +1,11 @@
 ﻿using HD_SUPPORT.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace HD_SUPPORT.Controllers
 {
@@ -20,16 +23,16 @@ namespace HD_SUPPORT.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Login(Administrador admin)
         {
-            var usuarioLogando = _context.Administradores.FirstOrDefault(u => u.Email == admin.Email && u.Senha == admin.Senha);// seu código para verificar o usuário
+            var usuarioLogando = _context.Administradores.FirstOrDefault(u => u.Email == admin.Email && u.Senha == admin.Senha);
+
+
             if (usuarioLogando != null)
             {
-
-                // Se o usuário estiver correto, armazene as informações necessárias na sessão
                 _httpContextAccessor.HttpContext.Session.SetString("UsuarioNome", usuarioLogando.Nome);
                 _httpContextAccessor.HttpContext.Session.SetInt32("UsuarioID", usuarioLogando.Id);
 

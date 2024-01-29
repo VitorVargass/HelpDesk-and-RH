@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var nomeUsuario = ViewBag.UsuarioNome as string;
+}
+
+
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
@@ -20,11 +25,13 @@
             <img src="~/Logo.png" alt="Logo">
             <h1>Support</h1>
         </div>
-        <div>
+        
             <nav>
                 <ul>
                     <li><a asp-area="" asp-controller="Administradores" asp-action="IndexAdministradores" class="btn-nav">Administradores</a></li>
                     <li><a asp-area="" asp-controller="Equipamentos" asp-action="IndexEquipamentos" class="btn-nav">Equipamentos</a></li>
+                    <li><a asp-area="" class="btn-nav align-user-img"><img class="img-user" src="~/usuario-icon.png" /> @nomeUsuario</a></li>
+                    <li><a asp-controller="Login" asp-action="Logout"><img class="img-logout" src="~/sair.png" /></a></li>
                 </ul>
             </nav>
     </header>

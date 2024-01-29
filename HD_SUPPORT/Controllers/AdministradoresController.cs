@@ -21,19 +21,28 @@ namespace HD_SUPPORT.Controllers
             if (!string.IsNullOrEmpty(nomeUsuario))
             {
                 ViewBag.UsuarioNome = nomeUsuario;
+
+                return View(await _contexto.Administradores.ToListAsync());
             }
 
-            return View(await _contexto.Administradores.ToListAsync());
+            return RedirectToAction("Index", "Login");
         }
 
         [HttpGet]
         public IActionResult NovoAdministrador()
         {
-            return View();
+            var nomeUsuario = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
+            if (!string.IsNullOrEmpty(nomeUsuario))
+            {
+                ViewBag.UsuarioNome = nomeUsuario;
+                return View();
+            }
+            return RedirectToAction("Index", "Login");
         }
         [HttpPost]
         public async Task<IActionResult> NovoAdministrador(Administrador administrador)
         {
+
             await _contexto.Administradores.AddAsync(administrador);
             await _contexto.SaveChangesAsync();
 
@@ -43,33 +52,61 @@ namespace HD_SUPPORT.Controllers
         [HttpGet]
         public async Task<IActionResult> AtualizarAdministrador(int administradorId)
         {
-            Administrador administrador = await _contexto.Administradores.FindAsync(administradorId);
-            return View(administrador);
+            var nomeUsuario = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
+            if (!string.IsNullOrEmpty(nomeUsuario))
+            {
+                ViewBag.UsuarioNome = nomeUsuario;
+                Administrador administrador = await _contexto.Administradores.FindAsync(administradorId);
+                return View(administrador);
+            }
+            return RedirectToAction("Index", "Login");
         }
         [HttpPost]
         public async Task<IActionResult> AtualizarAdministrador(Administrador administrador)
         {
-            _contexto.Administradores.Update(administrador);
-            await _contexto.SaveChangesAsync();
 
-            return RedirectToAction(nameof(IndexAdministradores));
+            var nomeUsuario = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
+            if (!string.IsNullOrEmpty(nomeUsuario))
+            {
+                _contexto.Administradores.Update(administrador);
+                await _contexto.SaveChangesAsync();
+
+                return RedirectToAction(nameof(IndexAdministradores));
+            }
+            return RedirectToAction("Index", "Login");
         }
 
         [HttpGet]
         public async Task<IActionResult> DetalharAdministrador(int administradorId)
         {
-            Administrador administrador = await _contexto.Administradores.FindAsync(administradorId);
-            return View(administrador);
+
+            var nomeUsuario = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
+            if (!string.IsNullOrEmpty(nomeUsuario))
+            {
+                ViewBag.UsuarioNome = nomeUsuario;
+
+                Administrador administrador = await _contexto.Administradores.FindAsync(administradorId);
+                return View(administrador);
+            }
+            return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
         public async Task<IActionResult> ExcluirAdministrador(int administradorId)
         {
-            Administrador administrador = await _contexto.Administradores.FindAsync(administradorId);
-            _contexto.Administradores.Remove(administrador);
-            await _contexto.SaveChangesAsync();
 
-            return RedirectToAction(nameof(IndexAdministradores));
+            var nomeUsuario = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
+            if (!string.IsNullOrEmpty(nomeUsuario))
+            {
+                ViewBag.UsuarioNome = nomeUsuario;
+
+                Administrador administrador = await _contexto.Administradores.FindAsync(administradorId);
+                _contexto.Administradores.Remove(administrador);
+                await _contexto.SaveChangesAsync();
+
+                return RedirectToAction(nameof(IndexAdministradores));
+            }
+            return RedirectToAction("Index", "Login");
         }
         
     }
