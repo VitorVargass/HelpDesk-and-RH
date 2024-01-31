@@ -9,5 +9,7 @@
         public required string Email { get; set; }
 
         public required string Senha { get; set; }
+
+        public required string Codigo2FA{ get; set;}
     }
 }
