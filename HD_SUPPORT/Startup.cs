@@ -1,4 +1,5 @@
-﻿using HD_SUPPORT.Models;
+﻿using HD_SUPPORT.Controllers;
+using HD_SUPPORT.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,6 +28,7 @@ namespace HD_SUPPORT
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+            services.AddScoped<AutenticacaoFatores>();
 
 
             services.AddHttpsRedirection(options =>

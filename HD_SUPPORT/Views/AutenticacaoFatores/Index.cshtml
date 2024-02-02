@@ -1,0 +1,43 @@
+﻿@model HD_SUPPORT.Models.Administrador
+
+@{
+    Layout = "_LayoutAutenticacao";
+    ViewData["Title"] = "Pagina Inicial";
+}
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<div class="content">
+    <div class="left">
+        <h1>Faça login em nosso site para ter acesso as nossas tecnologias!</h1>
+        <img class="img-decoration" src="~/computer.png" alt="image">
+    </div>
+    <div class="input-pai">
+        <div class="wrapper">
+            <span class="icon-close">
+                <i class="bi bi-x-lg" style="color: white; font-size: 18px;"></i>
+            </span>
+            <div class="form-box login">
+                <h2>Código de Verificação</h2>
+                <form asp-controller="AutenticacaoFatores" asp-action="VerificarCodigo" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="input-box">
+                        <span class="icon">
+                            <i class="bi bi-envelope-fill"></i>
+                        </span>
+                        <input type="number" name="codigoInserido" required>
+                        @if (ViewBag.Erro != null)
+                        {
+                            <p class="text-danger">@ViewBag.Erro</p>
+                        }
+                        <label>Digite o código enviado no email:</label>
+                    </div>
+                  
+                    <button type="submit" class="btn" style="color: #fff;">Enviar</button>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

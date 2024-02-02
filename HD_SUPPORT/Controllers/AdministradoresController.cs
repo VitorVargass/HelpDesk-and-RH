@@ -40,13 +40,19 @@ namespace HD_SUPPORT.Controllers
             return RedirectToAction("Index", "Login");
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> NovoAdministrador(Administrador administrador)
         {
+            var novoRegistro = await _contexto.Administradores.FirstOrDefaultAsync(u => u.Email == administrador.Email);
+            if (novoRegistro == null)
+            {
+                await _contexto.Administradores.AddAsync(administrador);
+                await _contexto.SaveChangesAsync();
 
-            await _contexto.Administradores.AddAsync(administrador);
-            await _contexto.SaveChangesAsync();
-
-            return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Login");
+            }
+            TempData["MensagemErro"] = $"Email Já existente";
+            return RedirectToAction("Index", "login");
         }
 
         [HttpGet]

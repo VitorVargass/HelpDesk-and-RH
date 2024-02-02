@@ -46,6 +46,12 @@
                     <div class="login-register">
                         <p>Não possui conta? <a href="#" class="register-link">Registre-se</a></p>
                     </div>
+                    @if (TempData["MensagemErro"] != null)
+                    {
+                        <div class="alert-error-tempdata" role="alert">
+                            @TempData["MensagemErro"]
+                        </div>
+                    }
                 </form>
             </div>
             <div class="form-box register">
@@ -83,6 +89,12 @@
                      <div class="login-register">
                         <p>Já possui conta? <a href="#" class="login-link">Entrar</a></p>
                     </div>
+                    @if (TempData["MensagemErro"] != null)
+                    {
+                        <div class="alert-error-tempdata" role="alert">
+                            @TempData["MensagemErro"]
+                        </div>
+                    }
                     <div class="logn-register">
                         <input type="submit" value="" class="login-link" style="border: none; background: none;"/>
                     </div>

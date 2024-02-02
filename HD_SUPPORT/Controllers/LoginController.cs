@@ -13,11 +13,13 @@ namespace HD_SUPPORT.Controllers
     {
         private readonly Contexto _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly AutenticacaoFatores _autenticacaoFatores;
 
-        public LoginController(Contexto context, IHttpContextAccessor httpContextAccessor)
+        public LoginController(Contexto context, IHttpContextAccessor httpContextAccessor, AutenticacaoFatores autenticacaoFatores)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
+            _autenticacaoFatores = autenticacaoFatores;
         }
         public IActionResult Index()
         {
@@ -38,7 +40,12 @@ namespace HD_SUPPORT.Controllers
 
                 ViewBag.UsuarioNome = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
 
-                return RedirectToAction("Index", "Home");
+                var codigo = _autenticacaoFatores.GerarCodigoDeConfirmacao();
+                _autenticacaoFatores.EnviarCodigoPorEmail(admin.Email, codigo);
+
+                _httpContextAccessor.HttpContext.Session.SetString("CodigoDeConfirmacao", codigo);
+
+                return RedirectToAction("Index", "AutenticacaoFatores");
             }
             else
             {
