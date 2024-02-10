@@ -1,0 +1,58 @@
+﻿@model HD_SUPPORT.Models.AtualizarSenhaViewModel
+
+@{
+    Layout = "_LayoutTermos";
+    ViewData["Title"] = "Redefinição de senha";
+}
+
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-sucess" role="alert" style="background-color: rgba(140, 223, 177, 0.5); padding: 20px; display: flex; justify-content: space-between;">
+        @TempData["MensagemSucesso"]
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+    </div>
+}
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-Danger" role="alert" style="background-color: rgb(231, 87, 87,0.5); padding: 20px; display: flex; justify-content: space-between;">
+        @TempData["MensagemErro"]
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+    </div>
+}
+<section style="display: flex; flex-direction:column; margin-top: 40px;">
+    <div style="display: flex; justify-content: space-between;">
+        <a asp-action="Index" asp-controller="Login" class="btn btn-outline-dark">Voltar</a>
+    </div>
+    <div class="input-master">
+        <form asp-action="AtualizarSenha" asp-controller="Redefinir" method="post">
+            <h4 style="margin-bottom: 80px;">Digite sua nova senha!</h4>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Token" />
+            <div class="input-box">
+                <span class="icon">
+                    <i class="bi bi-envelope-fill"></i>
+                </span>
+                <input type="password" asp-for="NovaSenha" required />
+                <span asp-validation-for="NovaSenha" class="text-danger"></span>
+                <label>Digite sua nova senha</label>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <i class="bi bi-envelope-fill"></i>
+                </span>
+                <input type="password" asp-for="ConfirmarSenha" required />
+                <span asp-validation-for="ConfirmarSenha" class="text-danger"></span>
+                <label>Confirme sua senha</label>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-edit">Enviar</button>
+            </div>
+        </form>
+        @section Scripts {
+            @{
+                await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            }
+        }
+    </div>
+</section>

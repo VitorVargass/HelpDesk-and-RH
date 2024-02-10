@@ -40,7 +40,7 @@
                     </div>
                     <div class="remember-forgot">
                         <label><input type="checkbox">Lembrar de mim</label>
-                        <a href="#">Esqueceu a senha?</a>
+                        <a asp-action="Index" asp-controller="Redefinir">Esqueceu a senha?</a>
                     </div>
                     <button type="submit" class="btn" style="color: #fff;">Entrar</button>
                     <div class="login-register">
@@ -62,7 +62,7 @@
                         <span class="icon">
                             <i class="bi bi-person-circle"></i>
                         </span>
-                        <input asp-for="Nome"/>
+                        <input asp-for="Nome" required/>
                         <span asp-validation-for="Nome" class="text-danger"></span>
                         <label>Nome</label>
                     </div>
@@ -70,7 +70,7 @@
                         <span class="icon">
                             <i class="bi bi-envelope-fill"></i>
                         </span>
-                        <input asp-for="Email"/>
+                        <input type="email" asp-for="Email" required/>
                         <span asp-validation-for="Email" class="text-danger"></span>
                         <label>Email</label>
                     </div>
@@ -78,12 +78,12 @@
                         <span class="icon">
                             <i class="bi bi-lock-fill"></i>
                         </span>
-                        <input asp-for="Senha"/>
+                        <input asp-for="Senha" required />
                         <span asp-validation-for="Senha" class="text-danger"></span>
                         <label>Senha</label>
                     </div>
                     <div class="remember-forgot">
-                        <label><input type="checkbox">Concordo com os termos e condições</label>
+                        <label><input type="checkbox" required>Concordo com os <a asp-action="TermosCondicoes" asp-controller="Login">termos e condições</a></label>
                     </div>
                     <button type="submit" class="btn" style="color: #fff;">Registrar</button>
                      <div class="login-register">

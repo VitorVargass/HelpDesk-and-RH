@@ -32,20 +32,25 @@ namespace HD_SUPPORT.Controllers
         {
             var usuarioLogando = _context.Administradores.FirstOrDefault(u => u.Email == admin.Email && u.Senha == admin.Senha);
 
-
             if (usuarioLogando != null)
             {
+                usuarioLogando.ContadorLogin++;
+
                 _httpContextAccessor.HttpContext.Session.SetString("UsuarioNome", usuarioLogando.Nome);
                 _httpContextAccessor.HttpContext.Session.SetInt32("UsuarioID", usuarioLogando.Id);
 
                 ViewBag.UsuarioNome = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
-
-                var codigo = _autenticacaoFatores.GerarCodigoDeConfirmacao();
-                _autenticacaoFatores.EnviarCodigoPorEmail(admin.Email, codigo);
-
-                _httpContextAccessor.HttpContext.Session.SetString("CodigoDeConfirmacao", codigo);
-
-                return RedirectToAction("Index", "AutenticacaoFatores");
+                if (usuarioLogando.ContadorLogin >= 5)
+                {
+                    var codigo = _autenticacaoFatores.GerarCodigoDeConfirmacao();
+                    _autenticacaoFatores.EnviarCodigoPorEmail(admin.Email, codigo);
+                    _httpContextAccessor.HttpContext.Session.SetString("CodigoDeConfirmacao", codigo);
+                    usuarioLogando.ContadorLogin = 0;
+                    _context.SaveChanges();
+                    return RedirectToAction("Index", "AutenticacaoFatores");
+                }
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -53,11 +58,14 @@ namespace HD_SUPPORT.Controllers
                 return View("Index");
             }
         }
-
         public IActionResult Logout()
         {
             _httpContextAccessor.HttpContext.Session.Clear();
             return RedirectToAction("Index", "Login");
+        }
+        public IActionResult TermosCondicoes()
+        {
+            return View();
         }
     }
 }

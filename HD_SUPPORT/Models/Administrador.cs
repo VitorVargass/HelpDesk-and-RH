@@ -9,8 +9,8 @@
         public required string Email { get; set; }
 
         public required string Senha { get; set; }
-        
-        // public required string CodigoConfirmacao { get; set;}
+
+        public int ContadorLogin { get; set; }
 
     }
 }

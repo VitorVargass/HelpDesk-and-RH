@@ -9,7 +9,13 @@ namespace HD_SUPPORT.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var nomeUsuario = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
+            if (!string.IsNullOrEmpty(nomeUsuario))
+            {
+                ViewBag.UsuarioNome = nomeUsuario;
+                return View();
+            }
+            return RedirectToAction("Index", "Login");
         }
         private readonly IHttpContextAccessor _httpContextAccessor;
        
