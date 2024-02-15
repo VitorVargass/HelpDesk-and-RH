@@ -1,11 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var nomeUsuario = ViewBag.UsuarioNome as string;
+}
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HD_SUPPORT</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/HD_SUPPORT.styles.css" asp-append-version="true" />
     <link href="https://cdn.datatables.net/v/dt/dt-1.13.8/datatables.min.css" rel="stylesheet">
 </head>
@@ -19,6 +22,13 @@
             <img src="~/Logo.png" alt="Logo">
             <h1>Support</h1>
         </div>
+        <nav>
+            <ul>
+               
+                <li><a asp-area="" class="btn-nav align-user-img"><img class="img-user" src="~/usuario-icon.png" /> @nomeUsuario</a></li>
+                <li><a asp-controller="Login" asp-action="Logout"><img class="img-logout" src="~/sair.png" /></a></li>
+            </ul>
+        </nav>
     </header>
 
     

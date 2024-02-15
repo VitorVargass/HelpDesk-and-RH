@@ -5,7 +5,7 @@
 }
 
 <div class="tabela">
-    <h1 class="titulo-tabela">Usuários e equipamentos</h1>
+    <h1 class="titulo-tabela">Equipamentos</h1>
 
     <p>
         <a asp-action="NovoEquipamento" class="btn btn-primary">Novo registro</a>
@@ -14,19 +14,19 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.NomeUsuario)
+                    <label>Usuario</label>
+                </th>
+                <th class ="none">
+                    <label>Função</label>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CategoriaUsuario)
+                    <label>Id Patrimonio</label>
+                </th>
+                <th class="none">
+                    <label>Marca</label>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.IdPatrimonio)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ModeloMarca)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TerminoEmprestimo)
+                    <label>Condição</label>
                 </th>
                 <th></th>
             </tr>
@@ -38,13 +38,13 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.NomeUsuario)
                     </td>
-                    <td>
+                    <td class="none">
                         @Html.DisplayFor(modelItem => item.CategoriaUsuario)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.IdPatrimonio)
                     </td>
-                    <td>
+                    <td class="none">
                         @Html.DisplayFor(modelItem => item.ModeloMarca)
                     </td>
                     <td>

@@ -424,3 +424,28 @@ header {
     margin: 0 auto;
 }
 
+@media (max-width: 460px) {
+    .img-text {
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+        .img-text img {
+            width: 100px;
+        }
+
+        .img-text h1 {
+            font-size: 55px;
+            background-image: linear-gradient(to left, var(--blue-3), var(--blue-1));
+            color: transparent;
+            display: inline-block;
+            background-clip: text;
+        }
+
+
+    .tabela-termos {
+        padding: 20px;
+        margin-top: 0px;
+    }
+}

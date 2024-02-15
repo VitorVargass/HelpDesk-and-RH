@@ -33,3 +33,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
 });
+
+var btnAbrir = document.querySelector('.abrirMenu')
+var menuHamburg = document.querySelector('.menuHamburg')
+var btnFechar = document.querySelector('.fecharMenu')
+var tabela = document.querySelector('.tabela')
+
+btnAbrir.addEventListener('click', function () {
+    menuHamburg.style.width = '250px'
+    tabela.style.display = 'none'
+})
+btnFechar.addEventListener('click', function () {
+    menuHamburg.style.width = '0'
+    tabela.style.display = 'flex'
+})

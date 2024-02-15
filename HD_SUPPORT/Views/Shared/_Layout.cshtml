@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/HD_SUPPORT.styles.css" asp-append-version="true" />
     <link href="https://cdn.datatables.net/v/dt/dt-1.13.8/datatables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
 
@@ -34,6 +35,14 @@
                     <li><a asp-controller="Login" asp-action="Logout"><img class="img-logout" src="~/sair.png" /></a></li>
                 </ul>
             </nav>
+        <button class="abrirMenu"><i class="bi bi-list"></i></button>
+        <div class="menuHamburg">
+            <button class="fecharMenu"><i class="bi bi-x-circle"></i></button>
+            <a asp-area="" asp-controller="Administradores" asp-action="IndexAdministradores" class="linkMenu">Administradores</a></li>
+            <a asp-area="" asp-controller="Equipamentos" asp-action="IndexEquipamentos" class="linkMenu">Equipamentos</a></li>
+            <a asp-area="" class="linkMenu align-user-img"><img class="img-user" src="~/usuario-icon.png" /> @nomeUsuario</a></li>
+            <a asp-controller="Login" asp-action="Logout"><img class="img-logout" src="~/sair.png" style="margin: 10px 40px;" /></a></li>
+        </div>
     </header>
 
     
