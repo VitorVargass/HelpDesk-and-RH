@@ -16,8 +16,7 @@ namespace HD_SUPPORT
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Contexto>(opcoes => opcoes.UseSqlite(Configuration.GetConnectionString("ConexaoSQLite1")));
-            services.AddDbContext<Contexto>(opcoes => opcoes.UseSqlite(Configuration.GetConnectionString("ConexãoSQLite2")));
+            services.AddDbContext<Contexto>(opcoes => opcoes.UseSqlite(Configuration.GetConnectionString("ConexaoSQLite")));
             services.AddControllersWithViews();
 
             services.AddHttpContextAccessor();

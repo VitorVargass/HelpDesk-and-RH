@@ -42,6 +42,10 @@ namespace HD_SUPPORT.Controllers
                 ViewBag.UsuarioNome = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
                 if (usuarioLogando.ContadorLogin >= 5)
                 {
+                    if(usuarioLogando.Categoria == "RH")
+                    {
+                        _httpContextAccessor.HttpContext.Session.SetString("CategoriaUsuario", usuarioLogando.Categoria);
+                    }
                     var codigo = _autenticacaoFatores.GerarCodigoDeConfirmacao();
                     _autenticacaoFatores.EnviarCodigoPorEmail(admin.Email, codigo);
                     _httpContextAccessor.HttpContext.Session.SetString("CodigoDeConfirmacao", codigo);
@@ -50,6 +54,11 @@ namespace HD_SUPPORT.Controllers
                     return RedirectToAction("Index", "AutenticacaoFatores");
                 }
                 _context.SaveChanges();
+                if(usuarioLogando.Categoria == "RH")
+                {
+                    return RedirectToAction("Index", "Rh");
+                }
+
                 return RedirectToAction("Index", "Home");
             }
             else

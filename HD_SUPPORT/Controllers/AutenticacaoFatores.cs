@@ -2,11 +2,16 @@
 using System.Net;
 using MimeKit;
 using MailKit.Net.Smtp;
+using HD_SUPPORT.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace HD_SUPPORT.Controllers
 {
     public class AutenticacaoFatores : Controller
     {
+        
+        private readonly Contexto _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public IActionResult Index()
         {
             var nomeUsuario = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
@@ -17,12 +22,14 @@ namespace HD_SUPPORT.Controllers
             }
             return RedirectToAction("Index", "Login");
         }
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        
        
 
-        public AutenticacaoFatores(IHttpContextAccessor httpContextAccessor)
+        public AutenticacaoFatores(Contexto context, IHttpContextAccessor httpContextAccessor)
         {
+            _context = context;
             _httpContextAccessor = httpContextAccessor;
+            
         }
 
         public string GerarCodigoDeConfirmacao()
@@ -53,6 +60,12 @@ namespace HD_SUPPORT.Controllers
             var codigoSalvo = _httpContextAccessor.HttpContext.Session.GetString("CodigoDeConfirmacao");
             if (codigoInserido == codigoSalvo)
             {
+                var categoriaUsuario = _httpContextAccessor.HttpContext.Session.GetString("CategoriaUsuario");
+                if (categoriaUsuario == "RH")
+                {
+                    return RedirectToAction("Index", "Rh");
+                }
+                    
                 return RedirectToAction("Index", "Home");
             }
             else

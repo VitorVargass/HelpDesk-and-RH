@@ -12,5 +12,6 @@
 
         public int ContadorLogin { get; set; }
 
+        public required string Categoria { get; set; }
     }
 }

@@ -85,10 +85,16 @@
                     <div class="remember-forgot">
                         <label><input type="checkbox" required>Concordo com os <a asp-action="TermosCondicoes" asp-controller="Login">termos e condições</a></label>
                     </div>
+                    <div class="remember-forgot">
+                        <label><input type="radio" id="rh" name="Categoria" value="RH" asp-for="Categoria" required />Sou do RH</label>
+                        <label><input type="radio" id="hp" name="Categoria" value="HP" asp-for="Categoria" />Sou do HelpDesk</label>
+                    </div>
+                    
                     <button type="submit" class="btn" style="color: #fff;">Registrar</button>
                      <div class="login-register">
                         <p>Já possui conta? <a href="#" class="login-link">Entrar</a></p>
                     </div>
+                    
                     @if (TempData["MensagemErro"] != null)
                     {
                         <div class="alert-error-tempdata" role="alert">
