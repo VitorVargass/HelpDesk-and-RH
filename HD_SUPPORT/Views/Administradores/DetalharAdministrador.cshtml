@@ -10,9 +10,9 @@
 <div style="display: flex; flex-direction:column;">
     <div style="display: flex; justify-content: space-between; margin-bottom: 100px;">
         <a asp-action="IndexAdministradores" class="btn btn-outline-dark">Voltar para lista</a>
-        <form asp-action="ExcluirAdministrador" asp-route-administradorid="@Model?.Id">
+        <!--<form asp-action="ExcluirAdministrador" asp-route-administradorid="@Model?.Id">
             <button type="submit" class="btn btn-danger">Excluir</button>
-        </form>
+        </form> !-->
     </div>
     <dl class="detalhesAdm">
         <div class="div-line">
@@ -37,6 +37,14 @@
             </dt>
             <dd class="">
                 @Html.DisplayFor(model => model.Senha)
+            </dd>
+        </div>
+        <div class="div-line">
+            <dt class="">
+                <label class="label-info">Categoria:</label>
+            </dt>
+            <dd class="">
+                @Html.DisplayFor(model => model.Categoria)
             </dd>
         </div>
     </dl>
