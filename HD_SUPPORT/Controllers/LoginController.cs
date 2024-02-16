@@ -38,6 +38,7 @@ namespace HD_SUPPORT.Controllers
 
                 _httpContextAccessor.HttpContext.Session.SetString("UsuarioNome", usuarioLogando.Nome);
                 _httpContextAccessor.HttpContext.Session.SetInt32("UsuarioID", usuarioLogando.Id);
+                _httpContextAccessor.HttpContext.Session.SetString("UsuarioEmail", usuarioLogando.Email);
 
                 ViewBag.UsuarioNome = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
                 if (usuarioLogando.ContadorLogin >= 5)

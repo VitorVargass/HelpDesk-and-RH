@@ -97,7 +97,32 @@ namespace HD_SUPPORT.Controllers
             return RedirectToAction("Index", "Login");
         }
 
+        public async Task<IActionResult> ConfirmarExclusao(int? administradorId)
+        {
+            var nomeUsuario = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
+            if (!string.IsNullOrEmpty(nomeUsuario))
+            {
+                ViewBag.UsuarioNome = nomeUsuario;
+
+                if (administradorId == null)
+                {
+                    return NotFound();
+                }
+
+                var administrador = await _contexto.Administradores
+                    .FirstOrDefaultAsync(m => m.Id == administradorId);
+                if (administrador == null)
+                {
+                    return NotFound();
+                }
+
+                return View(administrador);
+            }
+            return RedirectToAction("Index", "Login");
+        }
         [HttpPost]
+        [HttpPost, ActionName("ExcluirAdministrador")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ExcluirAdministrador(int administradorId)
         {
 
@@ -114,6 +139,6 @@ namespace HD_SUPPORT.Controllers
             }
             return RedirectToAction("Index", "Login");
         }
-        
+
     }
 }

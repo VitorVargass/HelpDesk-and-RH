@@ -1,0 +1,59 @@
+﻿@model HD_SUPPORT.Models.Equipamento
+
+<style>
+    .confirmacao-container {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #f9f9f9;
+        text-align: center;
+        background: transparent;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 30px rgba(0,0,0,.5);
+        padding: 50px;
+        border: 2px solid rgba(255,255,255,.5);
+        border-radius: 20px;
+        margin-top: 150px;
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    p {
+        margin: 20px 0;
+        color: #666;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+    }
+
+    .btn-default {
+        background-color: #6c757d;
+    }
+</style>
+
+<div class="confirmacao-container">
+    <h2>Confirmar Exclusão</h2>
+    <p>Tem certeza que deseja excluir o equipamento @Model.IdPatrimonio?</p>
+
+    @using (Html.BeginForm("ExcluirEquipamento", "Equipamentos", new { equipamentoId = Model.Id }, FormMethod.Post))
+    {
+        <button type="submit" class="btn btn-danger">Confirmar</button>
+        @Html.AntiForgeryToken()
+    }
+
+    <a href="@Url.Action("IndexEquipamentos", "Equipamentos")" class="btn btn-default">Cancelar</a>
+</div>

@@ -25,6 +25,8 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Senha)
                 </th>
+                <th>@Html.DisplayNameFor(model => model.Categoria)
+                </th>
                 <th></th>
             </tr>
         </thead>
@@ -41,12 +43,20 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Senha)
                     </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Categoria)
+                    </td>
                     <td style="display:flex; justify-content: right;">
                         <a asp-action="AtualizarAdministrador" asp-route-administradorid="@item.Id" class="btn btn-primary" style="margin: 0 10px 0 0px;">Atualizar</a>
                         <a asp-action="DetalharAdministrador" asp-route-administradorid="@item.Id" class="btn btn-success" style="margin: 0 10px 0 0px;">Detalhar</a>
-                        <form asp-action="ExcluirAdministrador" asp-route-administradorid="@item.Id">
-                            <button type="submit" class="btn btn-danger">Excluir</button>
-                        </form>
+                        @if (Context.Session.GetString("UsuarioEmail") != item.Email)
+                        {
+                            <form asp-action="ConfirmarExclusao" asp-controller="Administradores" asp-route-administradorid="@item.Id">
+                                <button type="submit" class="btn btn-danger">Excluir</button>
+                            </form>
+                        } else {
+                            <button class="btn btn-danger" disabled>Excluir</button>
+                        }
                     </td>
                 </tr>
             }

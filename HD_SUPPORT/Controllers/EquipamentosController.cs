@@ -96,21 +96,51 @@ namespace HD_SUPPORT.Controllers
             return RedirectToAction("Index", "Login");
         }
 
+        public async Task<IActionResult> ConfirmarExclusaoEquipamentos(int? equipamentoId)
+        {
+            var nomeUsuario = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
+            if (!string.IsNullOrEmpty(nomeUsuario))
+            {
+                ViewBag.UsuarioNome = nomeUsuario;
 
-        [HttpPost]
+                if (equipamentoId == null)
+                {
+                    return NotFound();
+                }
+
+                var equipamento = await _contexto.Equipamentos
+                    .FirstOrDefaultAsync(m => m.Id == equipamentoId);
+                if (equipamento == null)
+                {
+                    return NotFound();
+                }
+
+                return View(equipamento);
+            }
+            return RedirectToAction("Index", "Login");
+        }
+        [HttpPost, ActionName("ExcluirEquipamento")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ExcluirEquipamento(int equipamentoId)
         {
             var nomeUsuario = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
             if (!string.IsNullOrEmpty(nomeUsuario))
             {
-
-                ViewBag.UsuarioNome = _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
+                ViewBag.UsuarioNome = nomeUsuario;
 
                 Equipamento equipamento = await _contexto.Equipamentos.FindAsync(equipamentoId);
-                _contexto.Equipamentos.Remove(equipamento);
-                await _contexto.SaveChangesAsync();
+                if (equipamento != null)
+                {
+                    _contexto.Equipamentos.Remove(equipamento);
+                    await _contexto.SaveChangesAsync();
 
-                return RedirectToAction(nameof(IndexEquipamentos));
+                    return RedirectToAction(nameof(IndexEquipamentos));
+                }
+                else
+                {
+                    // Trate o caso onde o equipamento não é encontrado
+                    return NotFound();
+                }
             }
             return RedirectToAction("Index", "Login");
         }
